@@ -6,20 +6,27 @@ function authorizationBox(checkEnter, registration) {
         case "enter":
             
 registration.innerHTML = `
-<input id="login" type="text" class="reg__input" placeholder="Введите login"><br>
-<input id="password" class="reg__input" type="password" placeholder="Введите password"><br>
-<button id="login-button" class="registration__button">Войти</button><br>
-<button id="reg-button" class="registration__button">Зарегистрироваться</button>
+
+<div class = "add-form">
+<input id="login" type="text" class="reg-input-name" placeholder="Введите login"><br>
+<input id="password" class="reg-input-name" type="password" placeholder="Введите password"><br>
+<div class="reg-input-name">
+<button id="login-button" class="reg-button">Войти</button><br>
+<button id="reg-button" class="reg-button">Зарегистрироваться</button>
+</div>
+</div>
+
 `
             break;
             case "registration":
  registration.innerHTML = `
-
- <input id="name" type="text" class="reg__name" placeholder="Введите имя"><br>
- <input id="login" type="text" class="reg__input" placeholder="Введите login"><br>
-<input id="password" class="reg__input" type="password" placeholder="Введите password"><br>
-<button id="reg-button" class="registration__button">Зарегистрироваться</button>
-<button id="login-button" class="registration__button">Войти</button><br>
+ <div class = "add-form">
+ <input id="name" type="text" class="reg-input-name" placeholder="Введите имя"><br>
+ <input id="login" type="text" class="reg-input-name" placeholder="Введите login"><br>
+<input id="password" class="reg-input-name" type="password" placeholder="Введите password"><br>
+<button id="reg-button" class="reg-button">Зарегистрироваться</button>
+<button id="login-button" class="reg-button">Войти</button><br>
+</div>
  `               
             break;
     

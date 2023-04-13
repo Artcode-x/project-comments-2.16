@@ -1,3 +1,42 @@
+.reg-button {
+    margin-top: 24px;
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #bcec30;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.reg-button:hover {
+    opacity: 0.9;
+}  
+
+
+.reg__input,
+    .reg-input-name,
+.reg-input-text {
+    font-size: 16px;
+    font-family: Helvetica;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+}
+
+.reg-input-name {
+    // width: 100%;
+    padding: 11px 22px;
+}
+
+.reg-input-text {
+    margin-top: 12px;
+    padding: 22px;
+    resize: none;
+}
+
+
+
 .error {
     background-color: #DF6C6C;
 }
