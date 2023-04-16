@@ -59,7 +59,16 @@ return fetch('https://webdev-hw-api.vercel.app/api/v2/airone/comments', {
             }),
         })
             .then((response) => {
-                return response.json();
+
+                if (response.status === 400) {
+                    throw new Error("Неверный пользователь или пароль");
+                } else {
+                    return response.json();
+                }
+                
+                
+            }).catch((error) => {
+                alert(error.message);
             })
     }
 
@@ -74,9 +83,14 @@ return fetch('https://webdev-hw-api.vercel.app/api/v2/airone/comments', {
             }),
         })
         .then((response) => {
+            if (response.status === 400) {
+                throw new Error("Пользователь с таким логином уже существует");
+            } else {
+                return response.json(); 
+            }
             //console.log(response);
-            return response.json();
-            
+        }).catch((error) => {
+            alert("Пользователь с таким логином уже существует");
         })
         
     }
