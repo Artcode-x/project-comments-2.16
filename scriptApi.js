@@ -2,6 +2,7 @@
 
 
 function getAllCom() {
+    
 return fetch('https://webdev-hw-api.vercel.app/api/v2/airone/comments', {
     method: "GET",
     

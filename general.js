@@ -356,7 +356,7 @@ console.log(answer);
 
     }
  
-    
+     //
     getAllComments();
     buttonBlock();
 

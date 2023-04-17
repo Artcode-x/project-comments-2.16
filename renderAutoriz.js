@@ -1,9 +1,10 @@
 import { checkButtonAutorize, deleteCom, buttonEditText, answerOnComments, likesButton} from "./general.js";
 import { formatDateToRu, formatDateToUs } from "./lib/formatDate/formatDate.js"
-import { format } from "date-fns";
+import { format } from "date-fns"; 
 
 
 function authorizationBox(checkEnter, registration) {
+  
     switch (checkEnter) {
         case "enter":
             
