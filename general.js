@@ -278,16 +278,19 @@ console.log(answer);
     
         buttonEnter.addEventListener("click", () => {
             //логика выполнения при нажатии на кнопку войти в авторизации
-           const login = document.getElementById("login");
-           const password = document.getElementById("password");
-
-           if (login.value === "" || password.value === "") {
-            alert("Вы ничего не ввели");
-            return // чтобы логика далее не выполнялась 
-           }
 
            if (checkEnter === "enter") {
-            authoriz(login.value, password.value) // передаем в ф-ию лог и пасс
+            const login = document.getElementById("login");
+            const password = document.getElementById("password");
+
+            const loginSafe_ = protectHtmlString(login.value);
+            const passSafe_ = protectHtmlString(password.value);
+
+                if (login.value === "" || password.value === "") {
+                alert("Вы ничего не ввели"); 
+            return // чтобы не продолжалась логика
+            }
+            authoriz( loginSafe_, passSafe_) // передаем в ф-ию лог и пасс
            
             .then((answer) => {
                 commentName = answer.user.name;
@@ -356,7 +359,7 @@ console.log(answer);
 
     }
  
-     //
+     
     getAllComments();
     buttonBlock();
 
