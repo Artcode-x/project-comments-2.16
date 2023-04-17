@@ -1,4 +1,6 @@
 import { checkButtonAutorize, deleteCom, buttonEditText, answerOnComments, likesButton} from "./general.js";
+import { formatDateToRu, formatDateToUs } from "./lib/formatDate/formatDate.js"
+import { format } from "date-fns";
 
 
 function authorizationBox(checkEnter, registration) {
@@ -38,13 +40,13 @@ registration.innerHTML = `
 
 function renderIcomments(newBox, icomments) { 
         
-
+const country = "ru";
     newBox.innerHTML  = icomments.map((elementOfdata, index) => {
         return `
         <li data-text = '&gt ${elementOfdata.name} \n ${elementOfdata.text}' class="comment">
     <div class="comment-header">
       <div id="quote__name">${elementOfdata.name}</div>
-      <div>${elementOfdata.date}</div>
+      <div>${format(new Date(elementOfdata.date), "yyyy-MM-dd hh.mm.ss")}</div>
     </div>
     <div class="comment-body">
       <div class="comment-text" data-text>${elementOfdata.text} </div>

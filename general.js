@@ -2,6 +2,7 @@ import { getAllCom, sendCom, authoriz, registr, dell} from "./scriptApi.js"
 //import { takeToken} from "./login-component.js"
 import { authorizationBox, renderIcomments} from "./renderAutoriz.js"
 
+
     const buttonElement = document.getElementById('add-button'); // +
     //const listElement = document.getElementById('list');
     const nameInputElement = document.getElementById('name-input'); // +
@@ -26,12 +27,13 @@ import { authorizationBox, renderIcomments} from "./renderAutoriz.js"
  const getAllComments = () => {
    
         getAllCom().then((responseData) => {
+            
             icomments = responseData.comments.map((comment) => {
-
+                
                 return {
                     id: comment.id,
                     name: comment.author.name,
-                    date: new Date(comment.date).toLocaleString("ru-RU", options),
+                    date: comment.date, //new Date(comment.date).toLocaleString("ru-RU", options),
                     text: comment.text,
                     counter: comment.likes,
                     isliked: false,
@@ -40,8 +42,9 @@ import { authorizationBox, renderIcomments} from "./renderAutoriz.js"
             authorizationBox(checkEnter, registration);
 
 
-
+            
             renderIcomments(newBox, icomments);
+            
         })
         .then(() => {
             loaderStartElement.style.display = "none";
@@ -272,11 +275,17 @@ console.log(answer);
         
   const buttonEnter = document.getElementById("login-button");
   const buttonReg = document.getElementById("reg-button");
-
+    
         buttonEnter.addEventListener("click", () => {
             //логика выполнения при нажатии на кнопку войти в авторизации
            const login = document.getElementById("login");
            const password = document.getElementById("password");
+
+           if (login.value === "" || password.value === "") {
+            alert("Вы ничего не ввели");
+            return // чтобы логика далее не выполнялась 
+           }
+
            if (checkEnter === "enter") {
             authoriz(login.value, password.value) // передаем в ф-ию лог и пасс
            
@@ -314,11 +323,24 @@ console.log(answer);
             authorizationBox(checkEnter, registration) ;
         } else {
             // эти данные нужны только после 2 нажатия на кн-ку
+            
            const login = document.getElementById("login");
            const password = document.getElementById("password");
             const name = document.getElementById('name'); // тут поле ввода имени будет видимо
-            registr(login.value, name.value, password.value,)
-            .then((answer) => {
+        const safelogin = protectHtmlString(login.value); 
+        const safePass = protectHtmlString(password.value);
+        const nameSafe = protectHtmlString(name.value);
+
+        if (login.value === "" || password.value === "" || name.value === "") {   
+            alert("Павел Боложко не отправит пустое значение")
+            return; // Если не ставим return, то код будет выполняться далее
+        }
+
+        // 1 вариант записи ф-ии 
+         //   registr(`${protectHtmlString$(login.value)}`, `${protectHtmlString(name.value)}`, `${protectHtmlString(password.value)}`)
+         registr(safelogin, nameSafe, safePass)
+           
+         .then((answer) => {
                 
                 commentName = answer.user.name;
                 nameInputElement.value = commentName;
